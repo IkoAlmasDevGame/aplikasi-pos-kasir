@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    font-family: monospace;
+    font-style: normal;
+}
+
+body {
+    background-color: gray;
+    background-blend-mode: darken;
+}
+
+.card {
+    width: 400px;
+}
+
+.card-body {
+    height: auto;
+}
+
+.card-height {
+    height: 550px;
+}
+
+img {
+    width: 32px;
+    max-width: 64px;
+}
+
+@media (max-height: 720px) {
+    .card-height {
+        max-height: 720px;
+    }
+    .card-body {
+        max-height: 720px;
+    }
+}
+
+@media (max-width: 720px) {
+    .card {
+        max-width: 720px;
+    }
+}
