@@ -53,5 +53,97 @@ class Pengguna {
             exit;
         }
     }
+
+    public function create($nama,$username,$email,$password,$role){
+        $nama = htmlentities($_POST['nama_pengguna']) ? htmlspecialchars($_POST['nama_pengguna']) : $_POST['nama_pengguna'];
+        $username = htmlentities($_POST['username']) ? htmlspecialchars($_POST['username']) : $_POST['username'];
+        $email = htmlentities($_POST['email']) ? htmlspecialchars($_POST['email']) : $_POST['email'];
+        $password = md5(htmlspecialchars($_POST['password']), false);
+        $role = htmlentities($_POST['role']) ? htmlspecialchars($_POST['role']) : $_POST['role'];
+
+        $table = "user";
+        
+        if($role == "admin"){
+            $sql = "INSERT INTO $table (id_akun,nama_pengguna,username,email,password,role)
+             VALUES ('','$nama','$username','$email','$password','$role')";
+            $config = $this->db->query($sql);
+        }elseif($role == "cashier"){
+            $sql = "INSERT INTO $table (id_akun,nama_pengguna,username,email,password,role)
+             VALUES ('','$nama','$username','$email','$password','$role')";
+            $config = $this->db->query($sql);
+        }
+
+        if($config){
+            echo "<script>
+            document.location.href='../ui/header.php?page=pengguna&info=berhasil'
+            </script>";
+            exit;
+        }else{
+            echo "<script>
+            document.location.href='../ui/header.php?page=pengguna&info=gagal'
+            </script>";
+            exit;
+        }
+    }
+
+    public function update($nama,$username,$email,$password,$role,$id){
+        $nama = htmlentities($_POST['nama_pengguna']) ? htmlspecialchars($_POST['nama_pengguna']) : $_POST['nama_pengguna'];
+        $username = htmlentities($_POST['username']) ? htmlspecialchars($_POST['username']) : $_POST['username'];
+        $email = htmlentities($_POST['email']) ? htmlspecialchars($_POST['email']) : $_POST['email'];
+        $password = md5(htmlspecialchars($_POST['password']), false);
+        $role = htmlentities($_POST['role']) ? htmlspecialchars($_POST['role']) : $_POST['role'];
+        $id = htmlentities($_POST['id_akun']) ? htmlspecialchars($_POST['id_akun']) : $_POST['id_akun'];
+
+        $table = "user";
+        
+        if($role == "admin"){
+            $sql = "UPDATE $table SET nama_pengguna='$nama', username='$username', email='$email', password='$password', role='$role' WHERE id_akun = '$id'";
+            $config = $this->db->query($sql);
+            if($config){
+                echo "<script>
+                document.location.href='../ui/header.php?page=pengguna&info=ubah'
+                </script>";
+                exit;
+            }else{
+                echo "<script>
+                document.location.href='../ui/header.php?page=pengguna&aksi=ubahpengguna&id_akun=$_GET[id_akun]'
+                </script>";
+                exit;                
+            }
+        }elseif($role == "cashier"){
+            $sql = "UPDATE $table SET nama_pengguna='$nama', username='$username', email='$email', password='$password', role='$role' WHERE id_akun = '$id'";
+            $config = $this->db->query($sql);
+            if($config){
+                echo "<script>
+                document.location.href='../ui/header.php?page=beranda&info=updated'
+                </script>";
+                exit;
+            }else{
+                echo "<script>
+                document.location.href='../ui/header.php?page=ubah-pengguna&id_akun=$_GET[id_akun]'
+                </script>";
+                exit;
+            }
+        }
+    }
+
+    public function delete($id){
+        $id = htmlentities($_GET['id_akun']) ? htmlspecialchars($_GET['id_akun']) : $_GET['id_akun'];
+        $table = "user";
+        $sql = "DELETE FROM $table WHERE id_akun = '$id'";
+        $config = $this->db->query($sql);
+
+        if($config){
+            echo "<script>
+            document.location.href='../ui/header.php?page=pengguna&info=hapus'
+            </script>";
+            exit;
+        }else{
+            echo "<script>
+            document.location.href='../ui/header.php?page=beranda'
+            </script>";
+            exit;
+        }
+    }
 }
 ?>

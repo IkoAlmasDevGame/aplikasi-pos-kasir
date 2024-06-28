@@ -90,7 +90,7 @@ if($_SESSION['role'] == ""){
             </a>
             <ul id="laporan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="" aria-current="page">
+                    <a href="?page=laporan" aria-current="page">
                         <i class="bi bi-circle"></i><span>Laporan Penjualan</span>
                     </a>
                 </li>
@@ -182,14 +182,14 @@ if($_SESSION['role'] == ""){
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="" aria-current="page">
+                <a class="nav-link" href="?page=cashier" aria-current="page">
                     <i class="fa fa-cash-register"></i>
                     <span>Transaksi Penjualan</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="?aksi=ubahpengguna&id_akun=<?=$_SESSION['id_akun']?>" aria-current="page">
+                <a class="nav-link" href="?page=ubah-pengguna&id_akun=<?=$_SESSION['id_akun']?>" aria-current="page">
                     <i class="fa fa-user"></i>
                     <span>Edit Pengguna</span>
                 </a>

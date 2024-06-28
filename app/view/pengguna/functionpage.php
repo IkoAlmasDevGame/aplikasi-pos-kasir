@@ -11,7 +11,7 @@ if(isset($_GET['aksi'])){
 ?>
 <li class="breadcrumb breadcrumb-item">
     <a href="?page=pengguna&aksi=ubahpengguna&id_akun=<?=$_GET['id_akun']?>" aria-current="page"
-        class="text-decoration-none text-primary">Ubah Barang</a>
+        class="text-decoration-none text-primary">Ubah Pengguna</a>
 </li>
 <?php
     }

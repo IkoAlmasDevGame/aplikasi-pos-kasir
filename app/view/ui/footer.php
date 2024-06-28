@@ -31,6 +31,29 @@ new DataTable('#example2', {
         return: false,
     },
 });
+
+$(document).ready(function() {
+    var response = '';
+    $("#cari").change(function() {
+        $.ajax({
+            type: "POST",
+            url: "../kasir/get_barang.php?cari=yes",
+            data: 'keyword=' + $(this).val(),
+            async: false,
+            beforeSend: function(response) {
+                $("#hasil_cari").hide();
+                $("#tunggu").html(
+                    '<p style="color:green"><blink>tunggu sebentar</blink></p>');
+            },
+            success: function(html, response) {
+                $("#tunggu").html('');
+                $("#hasil_cari").show();
+                $("#hasil_cari").html(html);
+            }
+        });
+        return response;
+    });
+});
 </script>
 </body>
 

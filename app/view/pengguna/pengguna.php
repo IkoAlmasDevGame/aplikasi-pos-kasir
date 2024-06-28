@@ -31,7 +31,7 @@
                             <a href="?page=pengguna" aria-current="page" class="text-decoration-none text-primary">Data
                                 Pengguna</a>
                         </li>
-                        <?php require_once("../barang/functionpage.php") ?>
+                        <?php require_once("../pengguna/functionpage.php") ?>
                     </div>
                 </div>
             </div>
@@ -77,16 +77,16 @@
                                         <?php 
                                             if($isi['role'] == "admin"){
                                         ?>
-                                        <a href="" aria-current="page" class="btn btn-sm btn-warning">
+                                        <a href="?page=pengguna&aksi=ubahpengguna&id_akun=<?=$isi['id_akun']?>"
+                                            aria-current="page" class="btn btn-sm btn-warning">
                                             <i class="bx bx-edit"></i>
-                                        </a>
-                                        <a href="" aria-current="page" class="btn btn-sm btn-danger">
-                                            <i class="bx bx-trash"></i>
                                         </a>
                                         <?php
                                             }else if($isi['role'] == "cashier"){
                                         ?>
-                                        <a href="" aria-current="page" class="btn btn-sm btn-danger">
+                                        <a href="?page=pengguna&aksi=hapus-pengguna&id_akun=<?=$isi['id_akun']?>"
+                                            onclick="return confirm('Apakah data ini ingin anda hapus ?')"
+                                            aria-current="page" class="btn btn-sm btn-danger">
                                             <i class="bx bx-trash"></i>
                                         </a>
                                         <?php
@@ -102,7 +102,8 @@
                         </table>
                         <table>
                             <tbody>
-                                <a href="" aria-current="page" class="btn btn-sm btn-danger">
+                                <a href="?page=pengguna&aksi=tambahpengguna" aria-current="page"
+                                    class="btn btn-sm btn-danger">
                                     <i class="bi bi-plus"></i>
                                     <span>Tambah Data Pengguna</span>
                                 </a>

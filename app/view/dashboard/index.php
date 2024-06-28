@@ -15,6 +15,15 @@ require_once("../ui/sidebar.php");
             onclick="document.location.href = '?page=beranda'" aria-label="Close"></button>
     </div>
     <?php
+        }elseif($_GET['info'] == "updated"){
+    ?>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Informasi!</strong>
+        <p>selamat anda sudah mengubah data akun anda di <?php echo $hasil['nama_toko'] ?></p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"
+            onclick="document.location.href = '?page=beranda'" aria-label="Close"></button>
+    </div>
+    <?php
         }
     }
     ?>
