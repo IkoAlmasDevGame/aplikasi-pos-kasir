@@ -1,3 +1,1 @@
-# app-package
-
-Ini adalah sebuah file package untuk pembuatan website php native secara simple
+# Aplikasi Pos Kasir By Iko Almas Dev Game / Iko Almas
