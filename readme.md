@@ -1,1 +1,9 @@
-# Aplikasi Pos Kasir By Iko Almas Dev Game / Iko Almas
+# Aplikasi Pos Kasir By Iko Almas
+• Fitur - Fitur di Aplikasi :
+- Laporan
+- Barang
+- Kategori
+- Satuan
+- Pengaturan Toko
+- Transaksi Kasir
+- Pengguna
