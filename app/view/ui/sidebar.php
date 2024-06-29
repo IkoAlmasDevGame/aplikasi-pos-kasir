@@ -98,7 +98,7 @@ if($_SESSION['role'] == ""){
         </li><!-- End Components Nav -->
 
         <li class="nav-item">
-            <a class="nav-link" href="" aria-current="page">
+            <a class="nav-link" href="?page=pengaturan" aria-current="page">
                 <i class="fa fa-gear"></i>
                 <span>Pengaturan Toko</span>
             </a>

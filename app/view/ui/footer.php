@@ -54,6 +54,17 @@ $(document).ready(function() {
         return response;
     });
 });
+
+function previewImage(input) {
+    const file = input.files[0];
+    if (file) {
+        const preview = document.getElementById('preview');
+        preview.src = URL.createObjectURL(file);
+        preview.onload = function() {
+            URL.revokeObjectURL(preview.src); // Free memory
+        };
+    }
+}
 </script>
 </body>
 

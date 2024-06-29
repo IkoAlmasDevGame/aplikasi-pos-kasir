@@ -91,13 +91,15 @@ require_once("../ui/sidebar.php");
                 </div>
                 <div class="card-body">
                     <div class="text-center fs-2">
-                        <?php echo 0 ?>
+                        <?php $row = mysqli_fetch_array(mysqli_query($configs,"SELECT sum(jumlah) as terjual FROM v_penjualan order by id_penjualan desc"));
+                         echo $row['terjual']; ?>
                     </div>
                     <div class="card-footer" style="height: 45px; max-height: 150px;">
                         <?php 
                             if($_SESSION['role'] == "admin"){
                         ?>
-                        <a href="" aria-current="page" class="text-primary text-decoration-none">Table Laporan
+                        <a href="?page=laporan" aria-current="page" class="text-primary text-decoration-none">Table
+                            Laporan
                             <i class="bi bi-arrow-right"></i>
                         </a>
                         <?php
@@ -140,7 +142,8 @@ require_once("../ui/sidebar.php");
         </div>
     </div>
     <h4 class="fs-5 fw-normal fst-normal">Pemasukan Uang : Rp.
-        <?php echo number_format(0) ?> ,-</h4>
+        <?php $row = mysqli_fetch_array(mysqli_query($configs,"SELECT sum(harga_jual*jumlah) as pemasukan FROM v_penjualan order by id_penjualan desc"));
+         echo number_format($row['pemasukan']) ?> ,-</h4>
     <h4 class="fs-5 fw-normal fst-normal">Pengeluaran Modal : Rp.
         <?php $row = mysqli_fetch_array(mysqli_query($configs,"SELECT sum(harga_beli) as modal FROM barang order by id_barang desc")); 
         echo number_format($row['modal']) ?> ,-</h4>

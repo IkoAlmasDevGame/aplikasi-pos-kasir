@@ -153,76 +153,79 @@
                 </div>
                 <br>
                 <br>
-                <div class="card shadow mb-4">
-                    <div class="card-header py-2">
-                        <h4 style="text-align: center;" class="card-title">Laporan Penjualan</h4>
-                    </div>
-                    <div class="card-body mt-1">
-                        <div class="table-responsive">
-                            <table class="table table-sm w-100 table-bordered" id="example2">
-                                <thead>
-                                    <th>No</th>
-                                    <th>Nama Barang</th>
-                                    <th style="width:10%; max-width:10%;">Jumlah</th>
-                                    <th style="width:10%; max-width:10%;">Modal Beli</th>
-                                    <th style="width:10%; max-width:10%;">Modal Jual</th>
-                                    <th style="width:10%; max-width:10%;">Total</th>
-                                    <th>Tanggal Input</th>
-                                </thead>
-                                <tbody>
-                                    <?php 
-                                    $hj = 0;
-                                    $hb = 0;
-                                    $jumlah = 0;
-                                    $bayar = 0;
-                                    $no=1; 
-                                    if(!empty($_POST['cari'])){
-                                        $periode = $_POST['bln'].'-'.$_POST['thn'];
-                                        $no=1; 
+                <div class="col-sm-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-2">
+                            <h4 style="text-align: center;" class="card-title">Laporan Penjualan</h4>
+                        </div>
+                        <div class="card-body mt-1">
+                            <div class="table-responsive">
+                                <table class="table table-sm w-100 table-bordered" id="example2">
+                                    <thead>
+                                        <th>No</th>
+                                        <th>Nama Barang</th>
+                                        <th style="width:10%; max-width:10%;">Jumlah</th>
+                                        <th style="width:10%; max-width:10%;">Modal Beli</th>
+                                        <th style="width:10%; max-width:10%;">Modal Jual</th>
+                                        <th style="width:10%; max-width:10%;">Total</th>
+                                        <th>Tanggal Input</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                        $hj = 0;
+                                        $hb = 0;
                                         $jumlah = 0;
                                         $bayar = 0;
-                                        $hasil = $laporan-> periode_jual($periode);
-                                    }elseif(!empty($_POST['hari'])){
-                                        $hari = $_POST['hari'];
                                         $no=1; 
-                                        $jumlah = 0;
-                                        $bayar = 0;
-                                        $hasil = $laporan-> hari_jual($hari);
-                                    }else{
-                                        $hasil = $laporan->jual();
-                                    }
                                         
-                                    foreach ($hasil as $isi) {
-                                        $bayar += $isi['total'];
-									    $hb += $isi['harga_beli'];
-									    $hj += $isi['harga_jual'];
-									    $jumlah += $isi['jumlah'];
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $no;?></td>
-                                        <td><?php echo $isi['nama_barang'];?></td>
-                                        <td><?php echo $isi['jumlah'];?> </td>
-                                        <td>Rp.<?php echo number_format($isi['harga_beli']* $isi['jumlah']);?>,-</td>
-                                        <td>Rp.<?php echo number_format($isi['harga_jual']* $isi['jumlah']);?>,-</td>
-                                        <td>Rp.<?php echo number_format($isi['total']);?>,-</td>
-                                        <td><?php echo $isi['tanggal_input'];?></td>
-                                    </tr>
-                                    <?php 
-                                    $no++;
+                                        if(!empty($_POST['cari'])){
+                                            $periode = $_POST['bln'].'-'.$_POST['thn'];
+                                            $no=1; 
+                                            $jumlah = 0;
+                                            $bayar = 0;
+                                            $hasil = $laporan-> periode_jual($periode);
+                                        }elseif(!empty($_POST['hari'])){
+                                            $hari = $_POST['hari'];
+                                            $no=1; 
+                                            $jumlah = 0;
+                                            $bayar = 0;
+                                            $hasil = $laporan-> hari_jual($hari);
+                                        }else{
+                                            $hasil = $laporan->jual();
                                         }
-                                    ?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="2">Total Terjual</td>
-                                        <th><?php echo $jumlah;?></td>
-                                        <th>Rp.<?php echo number_format($hj);?>,-</th>
-                                        <th>Rp.<?php echo number_format($hb);?>,-</th>
-                                        <th>Rp.<?php echo number_format($bayar);?>,-</th>
-                                        <th style="background:#0bb365;color:#fff;">Keuntungan</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                                            
+                                        foreach ($hasil as $isi) {
+                                        $bayar += $isi['total'];
+									    $hb += $isi['harga_beli'] * $isi['jumlah'];
+									    $hj += $isi['harga_jual'] * $isi['jumlah'];
+									    $jumlah += $isi['jumlah'];
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $no;?></td>
+                                            <td><?php echo $isi['nama_barang'];?></td>
+                                            <td><?php echo $isi['jumlah'];?> </td>
+                                            <td>Rp. <?php echo number_format($isi['harga_beli']);?> ,-</td>
+                                            <td>Rp. <?php echo number_format($isi['harga_jual']);?> ,-</td>
+                                            <td>Rp. <?php echo number_format($isi['total']);?> ,-</td>
+                                            <td><?php echo $isi['tanggal_input'];?></td>
+                                        </tr>
+                                        <?php 
+                                        $no++;
+                                            }
+                                        ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="2">Total Terjual</td>
+                                            <th><?php echo $jumlah;?></td>
+                                            <th>Rp.<?php echo number_format($hj);?>,-</th>
+                                            <th>Rp.<?php echo number_format($hb);?>,-</th>
+                                            <th>Rp.<?php echo number_format($bayar);?>,-</th>
+                                            <th style="background:#0bb365;color:#fff;">Keuntungan</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

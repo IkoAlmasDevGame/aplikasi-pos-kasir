@@ -6,6 +6,7 @@ use model\Category;
 use model\Unit;
 use model\Penjualan;
 use model\Laporan;
+use model\setting;
 
 class Authentication {
     protected $konfig;
@@ -318,6 +319,29 @@ class Cashier {
     public function ResetBelanja(){
         $konfigs = $this->konfig->HapusBelanjaan();
         if($konfigs){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+class pengaturan {
+    protected $konfig;
+    public function __construct($konfig)
+    {
+        $this->konfig = new setting($konfig);
+    }
+
+    public function ubah(){
+        $ntoko = htmlentities($_POST['nama_toko']) ? htmlspecialchars($_POST['nama_toko']) : $_POST['nama_toko'];
+        $npemilik = htmlentities($_POST['nama_pemilik']) ? htmlspecialchars($_POST['nama_pemilik']) : $_POST['nama_pemilik'];
+        $flags = htmlentities($_POST['flags']) ? htmlspecialchars($_POST['flags']) : $_POST['flags'];
+        $id = htmlentities($_POST['id_sistem']) ? htmlspecialchars($_POST['id_sistem']) : $_POST['id_sistem'];
+        $nlogo = htmlentities($_FILES["logo"]["name"]) ? htmlspecialchars($_FILES["logo"]["name"]) : $_FILES["logo"]["name"];
+
+        $row = $this->konfig->updatemart($ntoko, $npemilik, $nlogo, $flags, $id);
+        if($row === true){
             return true;
         }else{
             return false;

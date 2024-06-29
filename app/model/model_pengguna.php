@@ -40,7 +40,8 @@ class Pengguna {
                     </script>";
                 }
                 $_SESSION['status'] = true;
-                $_COOKIE['cookies'] = $userInput;
+                $_COOKIE['cookies'] = $userInput; // input username atau email
+                setcookie($response['user'], $row, time() + (86400 * 30), "/"); // penambahan timer ketika waktu sudah melewati 1 hari
                 array_push($response['user'], $row);
                 exit;
             }

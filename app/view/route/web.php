@@ -14,6 +14,7 @@ require_once("../../model/model_kategori.php");
 require_once("../../model/model_satuan.php");
 require_once("../../model/model_kasir.php");
 require_once("../../model/model_laporan.php");
+require_once("../../model/model_pengaturan.php");
 $kasir = new model\Penjualan($konfigs);
 $laporan = new model\Laporan($konfigs);
 // Controller
@@ -22,6 +23,7 @@ $barang = new controller\Barang($configs);
 $kategori = new controller\Kategori($configs);
 $satuan = new controller\Satuan($configs);
 $cashier = new controller\Cashier($konfigs);
+$pengaturan = new controller\pengaturan($configs);
 
 if(!isset($_GET['page'])){
     require_once("../dashboard/index.php");
@@ -55,12 +57,20 @@ if(!isset($_GET['page'])){
             require_once("../kasir/cashier.php");
             break;
 
+        case 'print-cashier':
+            require_once("../kasir/print.php");
+            break;
+
         case 'laporan':
             require_once("../laporan/laporan.php");
             break;
 
         case 'export-laporan-penjualan':
             require_once("../laporan/excel.php");
+            break;
+
+        case 'pengaturan':
+            require_once("../pengaturan/toko.php");
             break;
 
         case 'keluar':
@@ -84,6 +94,16 @@ if(!isset($_GET['aksi'])){
     require_once("../../controller/controller.php");
 }else{
     switch ($_GET['aksi']) {
+        // Page Pengaturan Toko
+        case 'ubahtoko':
+            require_once("../pengaturan/ubahtoko.php");
+            break;
+            // Aksi Pengaturan Toko
+            case 'ubah-toko':
+                $pengaturan->ubah();
+                break;
+        // Page Pengaturan Toko
+
         // Page Pengguna
         case 'tambahpengguna':
             require_once("../pengguna/tambahpengguna.php");

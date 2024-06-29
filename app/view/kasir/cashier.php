@@ -246,7 +246,8 @@
                                     </td>
                                     <td colspan="5"></td>
                                     <td>
-                                        <a href="" aria-current="page" target="_blank">
+                                        <a href="header.php?page=print-cashier&bayar=<?php echo $bayar?>&discount=<?php echo $discount?>&kembali=<?php echo $hitungDiscount?>"
+                                            aria-current="page" target="_blank">
                                             <button class="btn btn-secondary btn-sm">
                                                 <i class="fa fa-print"></i> Print Untuk Bukti Pembayaran
                                             </button>
