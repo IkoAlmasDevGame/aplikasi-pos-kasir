@@ -199,7 +199,7 @@ CREATE TABLE `v_penjualan` (
 --
 DROP TABLE IF EXISTS `v_nota`;
 
-CREATE ALGORITHM=MERGE DEFINER=`view nota`@`%` SQL SECURITY INVOKER VIEW `v_nota`  AS SELECT `nota`.`id_nota` AS `id_nota`, `nota`.`id_barang` AS `id_barang`, `nota`.`harga_jual` AS `harga_jual`, `nota`.`jumlah` AS `jumlah`, `nota`.`total` AS `total`, `nota`.`tanggal_input` AS `tanggal_input`, `nota`.`periode` AS `periode` FROM `nota`WITH CASCADED CHECK OPTION  ;
+CREATE ALGORITHM=MERGE DEFINER=`view nota`@`%` SQL SECURITY INVOKER VIEW `v_nota`  AS SELECT `nota`.`id_nota` AS `id_nota`, `nota`.`id_barang` AS `id_barang`, `nota`.`harga_jual` AS `harga_jual`, `nota`.`jumlah` AS `jumlah`, `nota`.`total` AS `total`, `nota`.`tanggal_input` AS `tanggal_input`, `nota`.`periode` AS `periode` FROM `nota`WITH LOCAL CHECK OPTION  ;
 
 -- --------------------------------------------------------
 
@@ -208,7 +208,7 @@ CREATE ALGORITHM=MERGE DEFINER=`view nota`@`%` SQL SECURITY INVOKER VIEW `v_nota
 --
 DROP TABLE IF EXISTS `v_penjualan`;
 
-CREATE ALGORITHM=MERGE DEFINER=`view_penjualan`@`%` SQL SECURITY INVOKER VIEW `v_penjualan`  AS SELECT `penjualan`.`id_penjualan` AS `id_penjualan`, `penjualan`.`id_barang` AS `id_barang`, `penjualan`.`harga_jual` AS `harga_jual`, `penjualan`.`jumlah` AS `jumlah`, `penjualan`.`total` AS `total`, `penjualan`.`tanggal_input` AS `tanggal_input` FROM `penjualan`WITH CASCADED CHECK OPTION  ;
+CREATE ALGORITHM=MERGE DEFINER=`view_penjualan`@`%` SQL SECURITY INVOKER VIEW `v_penjualan`  AS SELECT `penjualan`.`id_penjualan` AS `id_penjualan`, `penjualan`.`id_barang` AS `id_barang`, `penjualan`.`harga_jual` AS `harga_jual`, `penjualan`.`jumlah` AS `jumlah`, `penjualan`.`total` AS `total`, `penjualan`.`tanggal_input` AS `tanggal_input` FROM `penjualan`WITH LOCAL CHECK OPTION  ;
 
 --
 -- Indexes for dumped tables
