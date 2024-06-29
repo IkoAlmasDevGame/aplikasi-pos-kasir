@@ -4,6 +4,7 @@ $sql = "SELECT * FROM sistem WHERE flags = '1' order by id_sistem asc";
 $row = $configs->query($sql);
 $hasil = $row->fetch_assoc();
 $_SESSION['gambar'] = $hasil['logo'];
+$_SESSION['nama_toko'] = $hasil['nama_toko'];
 
 // Model & Controller
 // Model
